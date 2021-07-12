@@ -2,6 +2,7 @@
 #include<conio.h>
 #include<thread>
 #include<exception>
+#include<windows.h>
 using namespace std;
 
 #define Escape 27
@@ -213,7 +214,14 @@ public:
 			system("CLS");
 			cout << "Engine is: " << (engine.is_started() ? "started" : "stopped") << endl;
 			cout << "Fuel level:\t" << tank.get_fuel_level() << "\t";
-			if (tank.get_fuel_level() < tank.get_min_level()) cout << "Low fuel" << endl;
+			if (tank.get_fuel_level() < tank.get_min_level())
+			{
+				HANDLE hnd = GetStdHandle(STD_OUTPUT_HANDLE);
+				SetConsoleTextAttribute(hnd, FOREGROUND_RED);
+				cout << "Low fuel" << endl;
+				HANDLE hnd1 = GetStdHandle(STD_OUTPUT_HANDLE);
+				SetConsoleTextAttribute (hnd1, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+			}
 			cout << "Speed:   " << speed << "\t";
 			cout << "Max speed: " << max_speed << endl;
 			std::this_thread::sleep_for(1s);
@@ -345,7 +353,7 @@ int main()
 	Engine engine(10);
 	engine.info();
 #endif // ENGINE_CHECK
-
+	
 	try
 	{
 		Car car(10, 50, 250);
