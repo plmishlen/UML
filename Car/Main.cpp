@@ -216,11 +216,11 @@ public:
 			cout << "Fuel level:\t" << tank.get_fuel_level() << "\t";
 			if (tank.get_fuel_level() < tank.get_min_level())
 			{
-				HANDLE hnd = GetStdHandle(STD_OUTPUT_HANDLE);
-				SetConsoleTextAttribute(hnd, FOREGROUND_RED);
+				HANDLE red = GetStdHandle(STD_OUTPUT_HANDLE);
+				SetConsoleTextAttribute(red, FOREGROUND_RED);
 				cout << "Low fuel" << endl;
-				HANDLE hnd1 = GetStdHandle(STD_OUTPUT_HANDLE);
-				SetConsoleTextAttribute (hnd1, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+				HANDLE white = GetStdHandle(STD_OUTPUT_HANDLE);
+				SetConsoleTextAttribute (white, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 			}
 			cout << "Speed:   " << speed << "\t";
 			cout << "Max speed: " << max_speed << endl;
